@@ -77,7 +77,14 @@ public class  AuthenticationService {
         revokeAllTokenByUser(user);
         saveUserToken(jwt, user);
 
-        return new AuthenticationResponse(jwt, "User login was successful");
+        return new AuthenticationResponse(
+                user.getId(),
+                user.getFirstName() + " " + user.getLastName(),
+                user.getEmail(),
+                List.of(),
+                jwt,
+                "User authenticated successfully"
+        );
 
     }
     private void revokeAllTokenByUser(User user) {
