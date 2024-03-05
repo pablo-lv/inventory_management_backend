@@ -7,10 +7,12 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+        column_ordering_strategy: legacy
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 server:
