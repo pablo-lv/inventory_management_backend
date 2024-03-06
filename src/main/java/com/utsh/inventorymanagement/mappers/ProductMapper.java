@@ -8,12 +8,16 @@ public class ProductMapper {
 
     public static Product productDtoToProduct(ProductDTO productDto){
         Product product = new Product();
+        if (productDto.getId() != null){
+            product.setId(productDto.getId());
+        }
         product.setName(productDto.getName());
         product.setDescription(productDto.getDescription());
         product.setPrice(productDto.getPrice());
         product.setStock(productDto.getStock());
         product.setEntryDate(productDto.getEntryDate());
         product.setCategory(productDto.getCategory());
+        product.setImages(productDto.getImages());
         return product;
     }
 }

@@ -65,4 +65,14 @@ public class ProductsController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/pageable")
+    public ResponseEntity<Iterable<Product>> getAllPageable(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "3") int size
+    ) {
+        Map<String, Object> response = productsService.getAll(page, size);
+        List<Product> products = (List<Product>) response.get("products");
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
 }

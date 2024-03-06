@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -38,6 +39,10 @@ public class Product {
 
     @Column(name = "category")
     private String category;
+
+//    @ElementCollection
+    @Column(name = "images")
+    private List<String> images;
 
 
 }
