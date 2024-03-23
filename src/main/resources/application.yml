@@ -1,4 +1,6 @@
 spring:
+#  mvc:
+#    static-path-pattern: /images/**
   datasource:
     url: jdbc:postgresql://localhost:5432/inventory
     username: postgres

@@ -1,6 +1,8 @@
 package com.utsh.inventorymanagement.controller;
 
 import com.utsh.inventorymanagement.dto.ProductDTO;
+import com.utsh.inventorymanagement.dto.ProductResponse;
+import com.utsh.inventorymanagement.mappers.ProductMapper;
 import com.utsh.inventorymanagement.model.Product;
 import com.utsh.inventorymanagement.service.IProductsService;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,7 @@ public class ProductsController {
     }
 
     @GetMapping()
+    @CrossOrigin(origins = "http://localhost:3001")
     public ResponseEntity<Iterable<Product>> getAllProducts() {
 //        Iterable<Product> products = productsService.getAllProducts();
         List<Product> products = productsService.getAllProducts();
@@ -28,11 +31,11 @@ public class ProductsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable String id) {
+    public ResponseEntity<ProductResponse> getProductById(@PathVariable String id) {
         Product prod = productsService.getProductById(id);
 
         if (prod != null) {
-            return new ResponseEntity<>(prod, HttpStatus.OK);
+            return new ResponseEntity<>(ProductMapper.productToResponse(prod), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -45,6 +48,7 @@ public class ProductsController {
     }
 
     @PutMapping()
+    @CrossOrigin(origins = "http://localhost:3001")
     public ResponseEntity<Product> updateProduct(@RequestBody ProductDTO product) {
         Product prod = productsService.updateProduct(product);
         return new ResponseEntity<>(prod, HttpStatus.OK);
