@@ -1,6 +1,8 @@
 spring:
 #  mvc:
 #    static-path-pattern: /images/**
+#  spring.data.mongodb.database=bezkoder_db
+#  spring.data.mongodb.port=27017
   datasource:
     url: jdbc:postgresql://localhost:5432/inventory
     username: postgres
