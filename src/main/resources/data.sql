@@ -18,5 +18,5 @@ INSERT INTO products (name, description, price, stock, entry_date, category, ima
 VALUES ('6b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed', 'Pasta', 'Pasta de trigo', 2.0, 70, '2024-03-05', 'Abarrotes', 'https://via.placeholder.com/150');
 
 INSERT INTO products (name, description, price, stock, entry_date, category, images)
-VALUES ('7b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed', 'Sopa enlatada', 'Sopa de tomate enlatada', 2.8, 60, '2024-03-05', 'Abarrotes', 'https://via.placeholder.com/150');
+VALUES ('7b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed', 'Sopa enlatada', 'Sopa de tomate enlatada', 2.8, 0, '2024-03-05', 'Abarrotes', 'https://via.placeholder.com/150');
 

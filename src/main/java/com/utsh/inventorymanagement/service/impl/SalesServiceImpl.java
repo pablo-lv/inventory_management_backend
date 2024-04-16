@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -74,18 +75,34 @@ public class SalesServiceImpl implements SalesService {
             SaleResponse saleResponse = new SaleResponse();
             saleResponse.setIdSale(sale.getId());
             saleResponse.setTotal(sale.getTotal());
+            saleResponse.setCreatedAt(sale.getCreatedAt());
 
             List<SaleProduct> saleProducts = salesProductsRepository.findAllByIdSale(sale.getId());
 
-            List<String> productIds = saleProducts.stream()
-                    .map(SaleProduct::getIdProduct)
-                    .toList();
+            // Create a map of product IDs and their total quantities
+            Map<String, Integer> productIdToQuantityMap = saleProducts.stream()
+                    .collect(Collectors.groupingBy(
+                            SaleProduct::getIdProduct,
+                            Collectors.summingInt(SaleProduct::getQuantity)
+                    ));
 
-            List<Product> products = productsRepository.findAllById(productIds);
+            // Fetch products based on product IDs
+            List<Product> products = productsRepository.findAllById(new ArrayList<>(productIdToQuantityMap.keySet()));
 
-            String concatenatedProductNames = products.stream()
-                    .map(Product::getName) // Assuming getName() returns the product name as a String
+            // Create a map of product names to total quantities
+            Map<String, Integer> productNameToQuantityMap = products.stream()
+                    .collect(Collectors.toMap(
+                            Product::getName,
+                            product -> productIdToQuantityMap.get(product.getId()),
+                            Integer::sum // In case different IDs have the same product name
+                    ));
+
+            // Format and concatenate product names with their quantities
+            String concatenatedProductNames = productNameToQuantityMap.entrySet().stream()
+                    .map(entry -> entry.getKey() + " (" + entry.getValue() + ")")
                     .collect(Collectors.joining(", "));
+
+
             saleResponse.setProductNames(concatenatedProductNames);
             return saleResponse;
         }).toList();
