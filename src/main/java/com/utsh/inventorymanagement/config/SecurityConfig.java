@@ -45,7 +45,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         req->req.requestMatchers("/auth/login/**","/auth/register/**", "/demo", "/content/**")
                                 .permitAll()
-                                .requestMatchers("/admin_only/**", "/api/products/**").hasAuthority("USER")
+                                .requestMatchers("/admin_only/**", "/api/products/**", "/api/sales/**").hasAuthority("USER")
                                 .anyRequest()
                                 .authenticated()
                 ).userDetailsService(userDetailsServiceImp)

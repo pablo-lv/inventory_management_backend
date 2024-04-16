@@ -1,6 +1,6 @@
 
 INSERT INTO products (name, description, price, stock, entry_date, category, images)
-VALUES ('1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed', 'Arroz', 'Arroz blanco de grano largo', 2.5, 100, '2024-03-05', 'Abarrotes', 'https://via.placeholder.com/150');
+VALUES ('1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed', 'Arroz', 'Arroz blanco de grano largo', 2.5, 100, '2024-03-05', 'Abarrotes', 'http://localhost:8080/content/test-image.png');
 
 INSERT INTO products (name, description, price, stock, entry_date, category, images)
 VALUES ('2b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed', 'Frijoles', 'Frijoles negros enlatados', 1.8, 50, '2024-03-05', 'Abarrotes', 'https://via.placeholder.com/150');

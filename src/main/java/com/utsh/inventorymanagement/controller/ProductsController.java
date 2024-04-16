@@ -2,6 +2,7 @@ package com.utsh.inventorymanagement.controller;
 
 import com.utsh.inventorymanagement.dto.ProductDTO;
 import com.utsh.inventorymanagement.dto.ProductResponse;
+import com.utsh.inventorymanagement.dto.SaleRequest;
 import com.utsh.inventorymanagement.mappers.ProductMapper;
 import com.utsh.inventorymanagement.model.Product;
 import com.utsh.inventorymanagement.service.IProductsService;
@@ -14,7 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/products")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 public class ProductsController {
 
     private IProductsService productsService;
