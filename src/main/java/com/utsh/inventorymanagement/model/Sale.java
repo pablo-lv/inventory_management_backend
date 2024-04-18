@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Sale {
     private Double total;
 
     @Column(name = "created_at")
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
 
 }

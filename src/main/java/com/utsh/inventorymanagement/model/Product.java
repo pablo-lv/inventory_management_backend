@@ -44,5 +44,8 @@ public class Product {
     @Column(name = "images")
     private List<String> images;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
 
 }

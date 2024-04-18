@@ -26,7 +26,7 @@ public class ProductsServiceImpl implements IProductsService {
 
     @Override
     public List<Product> getAllProducts() {
-        return productsRepository.findAll();
+        return productsRepository.findByDeletedFalse();
     }
 
 
@@ -41,6 +41,7 @@ public class ProductsServiceImpl implements IProductsService {
     @Override
     public Product createProduct(ProductDTO product) {
         Product productToSave = ProductMapper.productDtoToProduct(product);
+        productToSave.setDeleted(false);
         return productsRepository.save(productToSave);
     }
 
@@ -52,13 +53,18 @@ public class ProductsServiceImpl implements IProductsService {
 
     @Override
     public void deleteProduct(String id) {
-        productsRepository.deleteById(id);
+        var product = productsRepository.findById(id).orElse(null);
+        if (product != null) {
+            product.setDeleted(true);
+            productsRepository.save(product);
+        }
+
     }
 
     @Override
     public Map<String, Object> getAll(Integer page, Integer size) {
         Pageable paging = PageRequest.of(page, size);
-        var productsStored = productsRepository.findAll(paging);
+        var productsStored = productsRepository.findByDeletedFalse(paging);
 
         List<ProductResponse> productResponses = new ArrayList<>();
         for (Product product: productsStored.getContent()) {

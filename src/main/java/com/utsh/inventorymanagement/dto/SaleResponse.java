@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -17,6 +18,6 @@ public class SaleResponse {
     private String idSale;
     private Double total;
     private String productNames;
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
 }

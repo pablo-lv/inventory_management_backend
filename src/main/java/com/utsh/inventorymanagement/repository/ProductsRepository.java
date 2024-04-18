@@ -17,6 +17,11 @@ public interface ProductsRepository extends JpaRepository<Product, String> {
 
     Page<Product> findAll(Pageable pageable);
 
+    Page<Product> findByDeletedFalse(Pageable pageable);
+
+    List<Product> findByDeletedFalse();
+
+
 
     Optional<Product> findById(String id);
 }

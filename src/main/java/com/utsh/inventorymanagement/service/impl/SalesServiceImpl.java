@@ -13,6 +13,7 @@ import com.utsh.inventorymanagement.service.SalesService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +39,7 @@ public class SalesServiceImpl implements SalesService {
         // Create and store the Sale entity
         Sale sale = new Sale();
         sale.setTotal(saleRequest.getTotal());
-        sale.setCreatedAt(LocalDate.now());
+        sale.setCreatedAt(LocalDateTime.now());
         var storedSale = salesRepository.save(sale);
 
         // Prepare SaleProduct entries and update stock
