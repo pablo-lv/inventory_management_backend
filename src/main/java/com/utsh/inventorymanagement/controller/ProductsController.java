@@ -15,7 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/products")
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
+@CrossOrigin(origins = "*")
 public class ProductsController {
 
     private IProductsService productsService;
@@ -45,12 +45,19 @@ public class ProductsController {
     @PostMapping()
     public ResponseEntity<Product> createProduct(@RequestBody ProductDTO product) {
         Product prod = productsService.createProduct(product);
+        if (prod.getId() == null) {
+            return new ResponseEntity<>(prod, HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(prod, HttpStatus.CREATED);
     }
 
     @PutMapping()
     public ResponseEntity<Product> updateProduct(@RequestBody ProductDTO product) {
         Product prod = productsService.updateProduct(product);
+
+        if (prod.getId() == null) {
+            return new ResponseEntity<>(prod, HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(prod, HttpStatus.OK);
     }
 

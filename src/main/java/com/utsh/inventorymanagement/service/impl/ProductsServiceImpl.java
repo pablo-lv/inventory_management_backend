@@ -42,12 +42,27 @@ public class ProductsServiceImpl implements IProductsService {
     public Product createProduct(ProductDTO product) {
         Product productToSave = ProductMapper.productDtoToProduct(product);
         productToSave.setDeleted(false);
+
+        var productStored = productsRepository.findByDescriptionAndDeletedIsFalse(product.getDescription());
+
+        if (productStored.isPresent()) {
+            return new Product();
+        }
+
         return productsRepository.save(productToSave);
     }
 
     @Override
     public Product updateProduct(ProductDTO product) {
         Product productToUpdate = ProductMapper.productDtoToProduct(product);
+        var productStored = productsRepository.findByNameAndDescriptionAndDeletedIsFalse(
+                product.getName(),
+                product.getDescription());
+
+        if (productStored.isPresent() && !productStored.get().getId().equals(product.getId())) {
+            return new Product();
+        }
+        productToUpdate.setDeleted(false);
         return productsRepository.save(productToUpdate);
     }
 

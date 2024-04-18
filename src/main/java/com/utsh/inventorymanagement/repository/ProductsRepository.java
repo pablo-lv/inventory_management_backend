@@ -21,7 +21,9 @@ public interface ProductsRepository extends JpaRepository<Product, String> {
 
     List<Product> findByDeletedFalse();
 
+    Optional<Product> findByDescription(String description);
 
-
+    Optional<Product> findByDescriptionAndDeletedIsFalse(String description);
+    Optional<Product> findByNameAndDescriptionAndDeletedIsFalse(String name, String description);
     Optional<Product> findById(String id);
 }
