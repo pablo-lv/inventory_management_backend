@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class ProductDTO {
     private String description;
     private Double price;
     private Integer stock;
-    private Date entryDate;
+    private LocalDateTime entryDate;
     private String category;
     private List<String> images;
 }

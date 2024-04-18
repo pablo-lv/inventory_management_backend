@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class Product {
     private int stock;
 
     @Column(name = "entry_date")
-    private Date entryDate;
+    private LocalDateTime entryDate;
 
     @Column(name = "category")
     private String category;

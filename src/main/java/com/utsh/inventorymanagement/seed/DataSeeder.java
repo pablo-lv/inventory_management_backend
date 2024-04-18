@@ -61,8 +61,7 @@ public class DataSeeder implements CommandLineRunner {
         product.setPrice(price);
         product.setStock(stock);
         product.setCategory(category);
-        product.setEntryDate(Calendar.getInstance().getTime());
-        product.setEntryDate(Calendar.getInstance().getTime());
+        product.setEntryDate(LocalDateTime.now());
         product.setImages(List.of(image));
 
         productsService.createProduct(product);
